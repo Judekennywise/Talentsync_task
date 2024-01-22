@@ -16,10 +16,6 @@ const options = {
       },
       servers: [
         {
-          url: "http://localhost:3000/",
-          description: "Local server"
-        },
-        {
           url: "https://blog-post-36hm.onrender.com/",
           description: "Live server"
         },
