@@ -2,32 +2,42 @@ const User = require("./../model/User.model");
 const jwt = require("jsonwebtoken");
 const { promisify } = require("util");
 
-//jwt sign token function
+// jwt sign token function
 const signToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
-    expiresIn: "24",
+    expiresIn: "24h",
   });
 };
 
-exports.tokenBlacklist = new Set();
+exports.tokenBlacklist = new Set()
 
-//sign up a new user
+// sign up a new user
 exports.signup = async (req, res, next) => {
   try {
+    // Check if email already exists
+    const existingUser = await User.findOne({ email: req.body.email });
+    if (existingUser) {
+      return res.status(400).json({
+        status: "fail",
+        message: "Email already exists. Please use a different email.",
+      });
+    }
+
+    // Create a new user if email doesn't exist
     const newUser = await User.create({
       firstname: req.body.firstname,
       lastname: req.body.lastname,
       email: req.body.email,
       password: req.body.password,
     });
-    
-    //assign token to user
+
+    // Assign token to user
     const token = signToken(newUser._id);
 
-    //hide password before returning user's details
+    // Hide password before returning user's details
     newUser.password = undefined;
 
-    //send back response
+    // Send back response
     res.status(201).json({
       status: "success",
       token,
@@ -36,7 +46,12 @@ exports.signup = async (req, res, next) => {
       },
     });
   } catch (err) {
-    if (err) return next(err);
+    // Handle other errors
+    console.error(err);
+    res.status(500).json({
+      status: "error",
+      message: "Internal Server Error",
+    });
   }
 };
 
