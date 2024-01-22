@@ -20,7 +20,7 @@ const options = {
           description: "Local server"
         },
         {
-          url: "https://blog-post-36hm.onrender.com/docs/",
+          url: "https://blog-post-36hm.onrender.com/",
           description: "Live server"
         },
       ]
