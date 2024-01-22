@@ -1,0 +1,33 @@
+{
+  "name": "talentsync_task",
+  "version": "1.0.0",
+  "description": "a RESTful API for a blogging platform where users can create, read, update, and delete blog posts",
+  "main": "blogApp.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Judekennywise/Talentsync_task.git"
+  },
+  "keywords": [
+    "blog"
+  ],
+  "author": "Jude Oyedele",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Judekennywise/Talentsync_task/issues"
+  },
+  "homepage": "https://github.com/Judekennywise/Talentsync_task#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.3.2",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.1.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0",
+    "validator": "^13.11.0"
+  }
+}
