@@ -68,6 +68,7 @@ exports.createAPost = async (req, res) => {
     author,
     authorId,
     readTime,
+    timestamps
   });
 
   //add the new created post to 'posts' array property on the user document
